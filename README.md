@@ -1,58 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ⚙️ FFJ Mart POS - Backend API (Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is the core backend RESTful API for the **FFJ Mart Point of Sale (POS)** system. Built with **Laravel**, it manages business logic, database transactions, inventory tracking, user authentication, and API endpoints for consumption by the React frontend.
 
-## About Laravel
+The entire backend and its MySQL database are hosted on **InfinityFree**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🏗️ Architecture Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Architecture:** Decoupled / API-Driven Architecture
+- **Backend Framework:** Laravel (PHP)
+- **Database Engine:** MySQL (Hosted on InfinityFree Hosting Server)
+- **Host Server:** InfinityFree Hosting (`https://ffjmart-backend.wuaze.com`)
+- **Cross-Origin Security:** Configured via Laravel CORS middleware to allow requests from the Vercel-hosted frontend.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tech Stack & Requirements
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP Version:** 8.1 / 8.2
+- **Framework:** Laravel 10.x / 11.x
+- **Database:** MySQL
+- **Dependencies:** Composer
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🗄️ Database Setup (InfinityFree MySQL)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+The application uses an InfinityFree-hosted MySQL database. 
 
-```bash
-composer require laravel/boost --dev
+### Database Connection Configuration
+In your `.env` file, configure your database details provided by your InfinityFree Control Panel (vPanel):
 
-php artisan boost:install
+```env
+DB_CONNECTION=mysql
+DB_HOST=sqlxxx.infinityfree.com     # Replace with your MySQL Hostname from vPanel
+DB_PORT=3306                         # Default MySQL port
+DB_DATABASE=if0_xxxxx_ffjmart       # Replace with your InfinityFree DB Name
+DB_USERNAME=if0_xxxxx               # Replace with your InfinityFree vPanel Username
+DB_PASSWORD=your_vpanel_password    # Replace with your InfinityFree vPanel Password
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🔒 CORS Configuration (`config/cors.php`)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To enable seamless communication between the Vercel-hosted frontend and the InfinityFree-hosted backend, Cross-Origin Resource Sharing (CORS) is enabled across all API endpoints.
 
-## Code of Conduct
+File location: `config/cors.php`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```php
+<?php
 
-## Security Vulnerabilities
+return [
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    /*
+    |--------------------------------------------------------------------------
+    | Cross-Origin Resource Sharing (CORS) Configuration
+    |--------------------------------------------------------------------------
+    */
 
-## License
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => ['*'], // Permits requests from Vercel deployment URLs
+
+    'allowed_origins_patterns' => [],
+
+    'allowed_headers' => ['*'],
+
+    'exposed_headers' => [],
+
+    'max_age' => 0,
+
+    'supports_credentials' => false,
+
+];
+```
+
+---
+
+## 📡 REST API Endpoint Reference
+
+All API routes are prefixed with `/api`. Key endpoints include:
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/products` | Retrieve list of all available products |
+| `POST` | `/api/products` | Add a new product to inventory |
+| `GET` | `/api/categories` | Retrieve all product categories |
+| `POST` | `/api/transactions` | Submit and process a sales transaction |
+| `GET` | `/api/settings` | Retrieve store configuration settings |
+
+---
+
+## 💻 Local Development Setup
+
+To run this backend locally for testing or development:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/FirzaFJ/ffjpos-backend.git
+   cd ffjpos-backend
+   ```
+
+2. **Install Composer Dependencies:**
+   ```bash
+   composer install
+   ```
+
+3. **Configure Environment:**
+   Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run Migrations & Seeders:**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. **Serve Application:**
+   ```bash
+   php artisan serve
+   ```
+   The local server will run on `http://127.0.0.1:8000`.
+
+---
+
+## 🌐 Deployment to InfinityFree
+
+1. Upload your Laravel project files to the `htdocs` directory via FTP or File Manager.
+2. Configure `.env` with your InfinityFree database credentials.
+3. Import your database schema using `phpMyAdmin` available in the InfinityFree Control Panel.
+4. Ensure your domain points correctly to the `public/` directory or adjust routing via `.htaccess`.
+
+---
+
+## 📜 License
+
+This system is built for **FFJ**. All rights reserved.

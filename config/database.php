@@ -80,8 +80,8 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => storage_path('certs/isrgrootx1.pem'),
-                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => true,
+                \Pdo\Mysql::ATTR_SSL_CA => storage_path('certs/ca.pem'),
+                \Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT => true,
             ]),
         ],
 

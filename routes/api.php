@@ -62,3 +62,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/settings', [\App\Http\Controllers\Api\SettingController::class, 'index']);
     Route::post('/settings', [\App\Http\Controllers\Api\SettingController::class, 'update']);
 });
+
+Route::options('{any}', function () {
+    return response()->json([], 200);
+})->where('any', '.*');

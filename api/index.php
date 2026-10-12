@@ -1,3 +1,4 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-echo "Composer autoloader berhasil dimuat!";
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+echo "Bootstrap Laravel berhasil!";

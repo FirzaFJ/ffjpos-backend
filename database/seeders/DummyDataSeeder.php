@@ -382,6 +382,9 @@
 
 
 // / Minimarket / Toko Kelontong / Warung Sembako 5.000 transaksi
+//
+
+// transaksi 1.000 transaksi 2 tahun kebelakang
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -434,34 +437,34 @@ class DummyDataSeeder extends Seeder
         // 3. SEED PRODUK MINIMARKET
         $productsData = [
             // Sembako & Kebutuhan Dapur
-            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-001', 'name' => 'Minyak Goreng Bimoli 2L', 'price' => 38000, 'cost_price' => 33000, 'stock' => 10000],
-            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-002', 'name' => 'Beras Pandan Wangi 5kg', 'price' => 78000, 'cost_price' => 68000, 'stock' => 8000],
-            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-003', 'name' => 'Gula Pasir Gulaku 1kg',  'price' => 17500, 'cost_price' => 15000, 'stock' => 10000],
-            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-004', 'name' => 'Indomie Goreng Spesial', 'price' => 3100,  'cost_price' => 2600,  'stock' => 25000],
-            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-005', 'name' => 'Telur Ayam Lapis 1kg',    'price' => 29000, 'cost_price' => 25000, 'stock' => 8000],
+            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-001', 'name' => 'Minyak Goreng Bimoli 2L', 'price' => 38000, 'cost_price' => 33000, 'stock' => 5000],
+            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-002', 'name' => 'Beras Pandan Wangi 5kg', 'price' => 78000, 'cost_price' => 68000, 'stock' => 4000],
+            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-003', 'name' => 'Gula Pasir Gulaku 1kg',  'price' => 17500, 'cost_price' => 15000, 'stock' => 5000],
+            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-004', 'name' => 'Indomie Goreng Spesial', 'price' => 3100,  'cost_price' => 2600,  'stock' => 10000],
+            ['category_id' => $categories[0]->id, 'sku' => 'MM-SMB-005', 'name' => 'Telur Ayam Lapis 1kg',     'price' => 29000, 'cost_price' => 25000, 'stock' => 4000],
 
             // Minuman Kemasan
-            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-001', 'name' => 'Aqua Botol 600ml',       'price' => 3500,  'cost_price' => 2200,  'stock' => 30000],
-            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-002', 'name' => 'Teh Pucuk Harum 350ml',  'price' => 4000,  'cost_price' => 2800,  'stock' => 25000],
-            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-003', 'name' => 'Pocari Sweat Botol 500ml','price' => 8500,  'cost_price' => 6500,  'stock' => 15000],
-            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-004', 'name' => 'Ultra Milk Cokelat 250ml','price' => 7000,  'cost_price' => 5200,  'stock' => 18000],
-            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-005', 'name' => 'Kopi Kapal Api Mix 10s',  'price' => 14500, 'cost_price' => 12000, 'stock' => 12000],
+            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-001', 'name' => 'Aqua Botol 600ml',       'price' => 3500,  'cost_price' => 2200,  'stock' => 12000],
+            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-002', 'name' => 'Teh Pucuk Harum 350ml',  'price' => 4000,  'cost_price' => 2800,  'stock' => 10000],
+            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-003', 'name' => 'Pocari Sweat Botol 500ml','price' => 8500,  'cost_price' => 6500,  'stock' => 6000],
+            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-004', 'name' => 'Ultra Milk Cokelat 250ml','price' => 7000,  'cost_price' => 5200,  'stock' => 8000],
+            ['category_id' => $categories[1]->id, 'sku' => 'MM-MNM-005', 'name' => 'Kopi Kapal Api Mix 10s',  'price' => 14500, 'cost_price' => 12000, 'stock' => 6000],
 
             // Makanan Ringan & Biskuit
-            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-001', 'name' => 'Chitato Sapi Panggang 68g','price' => 11500, 'cost_price' => 9000,  'stock' => 15000],
-            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-002', 'name' => 'Oreo Vanilla 133g',       'price' => 10500, 'cost_price' => 8200,  'stock' => 15000],
-            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-003', 'name' => 'Silverqueen Milk Choco 58g','price' => 16500, 'cost_price' => 13000, 'stock' => 10000],
-            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-004', 'name' => 'Beng Beng Box 20x20g',   'price' => 32000, 'cost_price' => 26000, 'stock' => 8000],
+            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-001', 'name' => 'Chitato Sapi Panggang 68g','price' => 11500, 'cost_price' => 9000,  'stock' => 6000],
+            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-002', 'name' => 'Oreo Vanilla 133g',       'price' => 10500, 'cost_price' => 8200,  'stock' => 6000],
+            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-003', 'name' => 'Silverqueen Milk Choco 58g','price' => 16500, 'cost_price' => 13000, 'stock' => 4000],
+            ['category_id' => $categories[2]->id, 'sku' => 'MM-SNK-004', 'name' => 'Beng Beng Box 20x20g',   'price' => 32000, 'cost_price' => 26000, 'stock' => 3000],
 
             // Perawatan Diri & Mandi
-            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-001', 'name' => 'Sabun Lifebuoy Red 110g', 'price' => 5000,  'cost_price' => 3800,  'stock' => 15000],
-            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-002', 'name' => 'Shampoo Clear Menthol 160ml','price' => 24500, 'cost_price' => 19500, 'stock' => 10000],
-            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-003', 'name' => 'Pepsodent Herbal 190g',  'price' => 15500, 'cost_price' => 12000, 'stock' => 12000],
+            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-001', 'name' => 'Sabun Lifebuoy Red 110g', 'price' => 5000,  'cost_price' => 3800,  'stock' => 6000],
+            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-002', 'name' => 'Shampoo Clear Menthol 160ml','price' => 24500, 'cost_price' => 19500, 'stock' => 4000],
+            ['category_id' => $categories[3]->id, 'sku' => 'MM-PRW-003', 'name' => 'Pepsodent Herbal 190g',   'price' => 15500, 'cost_price' => 12000, 'stock' => 5000],
 
             // Perlengkapan Rumah Tangga
-            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-001', 'name' => 'Detergen Rinso Anti Noda 770g','price' => 22000, 'cost_price' => 17500, 'stock' => 10000],
-            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-002', 'name' => 'Pencuci Piring Sunlight 650ml','price' => 14000, 'cost_price' => 11000, 'stock' => 12000],
-            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-003', 'name' => 'Tissue Paseo 250 Sheets', 'price' => 18500, 'cost_price' => 14000, 'stock' => 10000],
+            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-001', 'name' => 'Detergen Rinso Anti Noda 770g','price' => 22000, 'cost_price' => 17500, 'stock' => 4000],
+            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-002', 'name' => 'Pencuci Piring Sunlight 650ml','price' => 14000, 'cost_price' => 11000, 'stock' => 5000],
+            ['category_id' => $categories[4]->id, 'sku' => 'MM-RTH-003', 'name' => 'Tissue Paseo 250 Sheets', 'price' => 18500, 'cost_price' => 14000, 'stock' => 4000],
         ];
 
         $products = [];
@@ -469,8 +472,8 @@ class DummyDataSeeder extends Seeder
             $products[] = Product::firstOrCreate(['sku' => $prod['sku']], $prod);
         }
 
-        // 4. SEED STOCK IN (Restock Awal Persediaan 3 Tahun Lalu)
-        $stockInDate = Carbon::now()->subDays(1100)->setTime(8, 0);
+        // 4. SEED STOCK IN (Restock Awal Persediaan 2 Tahun Lalu)
+        $stockInDate = Carbon::now()->subDays(730)->setTime(8, 0);
 
         $totalCostAllProducts = 0;
         $stockInDetailsData = [];
@@ -491,7 +494,7 @@ class DummyDataSeeder extends Seeder
             'reference_number' => 'STK-' . strtoupper(Str::random(6)),
             'total_cost'       => $totalCostAllProducts,
             'user_id'          => $user->id,
-            'notes'            => 'Restock awal persediaan barang minimarket (3 tahun)',
+            'notes'            => 'Restock awal persediaan barang minimarket (2 tahun)',
             'created_at'       => $stockInDate,
             'updated_at'       => $stockInDate,
         ]);
@@ -504,30 +507,30 @@ class DummyDataSeeder extends Seeder
             ]));
         }
 
-        // 5. SEED 5.000 TRANSAKSI (3 Tahun Kebelakang / 1.095 Hari)
+        // 5. SEED 1.000 TRANSAKSI (2 Tahun Kebelakang / 730 Hari)
         $paymentMethods = ['cash', 'qris', 'transfer'];
-        $chunkSize = 500;
-        $totalTransactions = 5000;
+        $chunkSize = 250;
+        $totalTransactions = 1000;
 
-        $this->command->info("Memulai pembuatan {$totalTransactions} data transaksi selama 3 tahun ke belakang...");
+        $this->command->info("Memulai pembuatan {$totalTransactions} data transaksi selama 2 tahun ke belakang...");
 
         for ($i = 1; $i <= $totalTransactions; $i += $chunkSize) {
             $allDetailsBatch = [];
             $limit = min($i + $chunkSize - 1, $totalTransactions);
 
             for ($j = $i; $j <= $limit; $j++) {
-                $randomDays = rand(0, 1095);
+                $randomDays = rand(0, 730); // 2 tahun ke belakang
                 $randomHours = rand(7, 22);
                 $randomMinutes = rand(0, 59);
                 $transactionDate = Carbon::now()->subDays($randomDays)->setTime($randomHours, $randomMinutes);
 
-                $selectedProducts = collect($products)->random(rand(2, 6));
+                $selectedProducts = collect($products)->random(rand(2, 5));
 
                 $totalAmount = 0;
                 $currentTransactionDetails = [];
 
                 foreach ($selectedProducts as $product) {
-                    $qty = rand(1, 5);
+                    $qty = rand(1, 4);
                     $subtotal = $product->price * $qty;
                     $totalAmount += $subtotal;
 
@@ -581,6 +584,6 @@ class DummyDataSeeder extends Seeder
             $this->command->info("Proses: {$limit} / {$totalTransactions} transaksi berhasil dibuat...");
         }
 
-        $this->command->info('Sukses! 5.000 data transaksi 3 tahun ke belakang berhasil dibuat!');
+        $this->command->info('Sukses! 1.000 data transaksi 2 tahun ke belakang berhasil dibuat!');
     }
 }

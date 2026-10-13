@@ -1,35 +1,40 @@
-FROM php:8.2-fpm
+FROM php:8.5-fpm
 
-# Install sistem dependencies & ekstensi PHP yang dibutuhkan Laravel
+# Install system dependencies & Node.js (jika butuh asset building)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
     zip \
     unzip \
-    nginx
+    nginx \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-RUN docker-php-ext-install pdo_mysql mbstring exts gd bcmath
-
-# Install Composer
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
-# Copy seluruh file proyek ke container
-COPY . /var/www
+# Copy existing application directory contents
+COPY . /var/www/html
 
-# Install dependensi Laravel via Composer
-RUN composer install --no-dev --optimize-autoloader
+# Install composer dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Berikan izin direktori storage & cache
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Set permissions for storage and bootstrap cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port yang digunakan oleh Render
-EXPOSE 8080
+# Konfigurasi Nginx untuk Laravel (mengarah ke /public)
+COPY docker/nginx.conf /etc/nginx/sites-available/default
 
-# Jalankan server bawaan Laravel mengarah ke port Render ($PORT)
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+EXPOSE 80
+
+# Jalankan PHP-FPM dan Nginx secara bersamaan
+CMD service nginx start && php-fpm

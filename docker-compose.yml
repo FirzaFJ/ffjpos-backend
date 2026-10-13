@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel-pos-app
+    container_name: pos-backend-app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=pos_db
+      - DB_USERNAME=pos_user
+      - DB_PASSWORD=secretpassword
+    volumes:
+      - ./:/var/www/html
+      - /var/www/html/vendor
+    depends_on:
+      - db
+    networks:
+      - pos-network
+
+  db:
+    image: mysql:8.0
+    container_name: pos-database
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: pos_db
+      MYSQL_USER: pos_user
+      MYSQL_PASSWORD: secretpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - pos-network
+
+volumes:
+  db_data:
+
+networks:
+  pos-network:
+    driver: bridge
